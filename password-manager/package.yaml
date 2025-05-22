@@ -1,0 +1,70 @@
+name:                password-manager
+version:             0.1.0.0
+github:              "githubuser/password-manager"
+license:             BSD-3-Clause
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2025 Author"
+
+extra-source-files:
+  - README.md
+  - CHANGELOG.md
+
+description:         |
+  Aplicación en Haskell para la gestión segura de contraseñas cifradas con PIN.
+
+dependencies:
+  - base >= 4.7 && < 5
+  - ansi-terminal
+  - cryptonite
+  - memory
+  - bytestring
+  - directory
+  - process
+  - base16-bytestring
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-export-lists
+  - -Wmissing-home-modules
+  - -Wpartial-fields
+  - -Wredundant-constraints
+
+default-extensions:
+  - OverloadedStrings
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Types
+    - Encryption
+    - Storage
+    - Clipboard
+    - Utils
+    - UI
+
+executables:
+  password-manager-exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - password-manager
+
+tests:
+  password-manager-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - password-manager
